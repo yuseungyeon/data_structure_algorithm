@@ -1,0 +1,12 @@
+from sys import stdin
+
+for _ in range(int(stdin.readline())):
+    array = list(map(int, stdin.readline().split()))
+    avg = sum(array[1:])/array[0]
+
+    ans = 0
+    for i in array[1:]:
+        if i > avg:
+            ans += 1
+
+    print("{:.3f}%".format(ans/array[0]*100))
