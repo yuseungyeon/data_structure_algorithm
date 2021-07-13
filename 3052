@@ -1,0 +1,10 @@
+from sys import stdin
+
+array = []
+for _ in range(10):
+    num = int(stdin.readline())
+    array.append(num%42)
+
+array= list(set(array))
+
+print(len(array))
