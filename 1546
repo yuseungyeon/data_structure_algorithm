@@ -1,0 +1,12 @@
+from sys import stdin
+
+num = int(stdin.readline())
+array = list(map(int, stdin.readline().split()))
+
+max_grade = max(array)
+ans = []
+
+for i in array:
+    ans.append(i/max_grade*100)
+
+print(sum(ans)/num)
