@@ -1,0 +1,15 @@
+from sys import stdin
+
+for _ in range(int(stdin.readline())):
+    array = list(map(str, stdin.readline().replace('\n', '')))
+
+    ans = 0
+    med = 0
+    for i in array:
+        if i == 'O':
+            med += 1
+            ans += med
+        else:
+            med = 0
+
+    print(ans)
