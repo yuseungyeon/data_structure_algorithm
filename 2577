@@ -1,0 +1,11 @@
+from sys import stdin
+
+num = 1
+for _ in range(3):
+    num1 = int(stdin.readline())
+    num *= num1
+
+num = list(str(num))
+
+for i in range(10):
+    print(num.count(str(i)))
