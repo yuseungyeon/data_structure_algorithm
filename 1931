@@ -1,0 +1,17 @@
+import sys
+
+array = []
+
+for _ in range(int(input())):
+    array.append(list(map(int, sys.stdin.readline().split())))
+
+array.sort(key=lambda x:(x[1], x[0]))
+
+result = end = 0
+
+for i, j in array:
+    if i>=end:
+        result+=1
+        end = j
+
+print(result)
