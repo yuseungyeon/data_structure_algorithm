@@ -1,0 +1,12 @@
+import sys
+
+array = []
+
+for i in range(int(input())):
+    array.append(sys.stdin.readline())
+
+array = list(set(array))
+
+array.sort(key=lambda x:((len(x), x)))
+
+print(''.join(array))
