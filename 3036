@@ -1,0 +1,15 @@
+from sys import stdin
+
+def greatest_common(a, b):
+    while b>0:
+        a, b = b, a%b
+    return a
+
+n = int(stdin.readline())
+array = list(map(int, stdin.readline().split()))
+
+mom = array[0]
+
+for i in array[1:]:
+    a = greatest_common(mom, i)
+    print(mom//a,i//a, sep="/")
