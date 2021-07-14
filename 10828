@@ -1,0 +1,45 @@
+import sys
+
+class Stack:
+    def __init__(self):
+        self.data = []
+
+    def size(self):
+        return len(self.data)
+
+    def empty(self):
+        return self.size() == 0
+
+    def push(self, item):
+        self.data.append(item)
+
+    def pop(self):
+        return self.data.pop()
+
+    def top(self):
+        return self.data[-1]
+
+stack = Stack()
+
+for _ in range(int(input())):
+    input_command = sys.stdin.readline().rstrip().split()
+    command = input_command[0]
+    if command == 'push':
+        stack.push(input_command[1])
+    elif command == 'pop':
+        if stack.size() == 0:
+            print(-1)
+        else:
+            print(stack.pop())
+    elif command == 'size':
+        print(stack.size())
+    elif command == 'empty':
+        if stack.empty() == True:
+            print(1)
+        else:
+            print(0)
+    elif command == 'top':
+        if stack.empty() == True:
+            print(-1)
+        else:
+            print(stack.top())
