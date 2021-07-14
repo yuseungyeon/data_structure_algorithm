@@ -1,0 +1,14 @@
+import sys
+
+n = int(input())
+array = list(map(int, sys.stdin.readline().split()))
+middle = []
+
+result = [-1 for _ in range(n)]
+for i in range(n):
+    while middle and array[middle[-1]] < array[i]:
+        result[middle.pop()] = array[i]
+    middle.append(i)
+
+
+print(*result)
