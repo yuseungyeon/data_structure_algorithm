@@ -1,0 +1,17 @@
+n, won = map(int, input().split())
+money = []
+result = 0
+
+for i in range(n):
+    money.append(int(input()))
+
+money.reverse()
+
+for k in money:
+    if won//k!=0:
+        result += won//k
+        won = won%k
+    if won == 0:
+        break
+
+print(result)
