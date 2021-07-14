@@ -1,0 +1,13 @@
+from sys import stdin
+from math import factorial
+
+n = str(factorial(int(stdin.readline())))
+result = 0
+
+for i in n[::-1]:
+    if i == '0':
+        result += 1
+    else:
+        break
+        
+print(result)
