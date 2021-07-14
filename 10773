@@ -1,0 +1,33 @@
+class Stack:
+    def __init__(self):
+        self.data = []
+
+    def size(self):
+        return len(self.data)
+
+    def isEmpty(self):
+        return self.size() == 0
+
+    def push(self, item):
+        self.data.append(item)
+
+    def pop(self):
+        return self.data.pop()
+
+    def peek(self):
+        return self.data[-1]
+
+stack = Stack()
+result = 0
+
+for i in range(int(input())):
+    n = int(input())
+
+    if n == 0:
+        m = stack.pop()
+        result -= m
+    elif n != 0:
+        stack.push(n)
+        result += n
+
+print(result)
