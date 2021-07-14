@@ -1,0 +1,14 @@
+array = input().split("-")
+
+result = 0
+for i in range(len(array)):
+    s = array[i].split("+")
+    num = 0
+    for j in s:
+        num += int(j)
+    if i == 0:
+        result += num
+    else:
+        result -= num
+
+print(result)
