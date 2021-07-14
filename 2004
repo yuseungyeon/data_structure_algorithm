@@ -1,0 +1,22 @@
+from sys import stdin
+
+def count_5(num):
+    ans = 0
+    while num != 0:
+        num = num // 5
+        ans += num
+    return ans
+
+def count_2(num):
+    ans = 0
+    while num != 0:
+        num = num // 2
+        ans += num
+    return ans
+
+n, k = map(int, stdin.readline().split())
+
+num1 = count_5(n)-count_5(k)-count_5(n-k)
+num2 = count_2(n)-count_2(k)-count_2(n-k)
+
+print(min(num1, num2))
