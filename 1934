@@ -1,0 +1,12 @@
+def greatest_common(a, b):
+    while b>0:
+        a, b = b, a%b
+    return a
+
+
+def least_common(a, b):
+    return a * b / greatest_common(a, b)
+
+for _ in range(int(input())):
+    a, b = map(int, input().split())
+    print(int(least_common(a,b)))
