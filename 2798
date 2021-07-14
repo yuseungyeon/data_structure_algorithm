@@ -1,0 +1,11 @@
+n, m = map(int,input().split())
+max = 0
+card = list(map(int, input().split()))
+for i in range(len(card)):
+    for j in range(i+1, len(card)):
+        for k in range(j+1, len(card)):
+            d = card[i]+card[j]+card[k]
+            if d > max and d <= m:
+                max = d
+
+print(max)
