@@ -1,0 +1,13 @@
+n = int(input())
+
+distance = list(map(int, input().split()))
+city = list(map(int, input().split()))
+m_cost = city[0]
+oil = m_cost*distance[0]
+
+for i in range(1, n-1):
+    if m_cost > city[i]:
+        m_cost = city[i]
+    oil += m_cost*distance[i]
+
+print(oil)
