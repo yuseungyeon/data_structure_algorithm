@@ -1,0 +1,24 @@
+import sys
+
+def prime(num): # 에라토스테네스의 체
+    if num == 1:
+        return False
+    elif num == 2:
+        return True
+    else:
+        for j in range(2, num):
+            if num%j == 0:
+                return False
+    return True
+
+
+n = int(input())
+count = 0
+
+array = list(map(int, input().split()))
+
+for i in array:
+    if prime(i) == True:
+        count += 1
+
+print(count)
