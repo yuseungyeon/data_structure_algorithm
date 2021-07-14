@@ -1,0 +1,13 @@
+n,k = map(int, input().split())
+circular = [i for i in range(1,n+1)]
+ans = []
+o = 0
+
+for i in range(len(circular)):
+    o+=k-1
+    if o >=len(circular):
+        o = o% len(circular)
+    ans.append(str(circular[o]))
+    del circular[o]
+
+print("<",", ".join(ans)[:],">", sep='')
