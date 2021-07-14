@@ -1,0 +1,17 @@
+import sys
+
+for _ in range(int(input())):
+    input_command = list(input())
+    result = 0
+    for i in input_command:
+        if i == '(':
+            result += 1
+        else:
+            result -= 1
+        if result < 0:
+            print("NO")
+            break
+    if result == 0:
+        print("YES")
+    elif result > 0:
+        print("NO")
