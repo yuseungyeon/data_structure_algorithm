@@ -1,0 +1,38 @@
+from sys import stdin
+
+def greatest_common(a, b): # 최대공약수 구하기
+    while b>0:
+        a, b = b, a%b
+    return a
+
+def get_divisor(n): # 최대공약수의 약수 구하기
+    n = int(n)
+    divisors = []
+    divisors_back = [] 
+
+    for i in range(1, int(n**(1/2)) + 1): 
+        if (n % i == 0):            
+            divisors.append(i)
+            if (i != (n // i)): 
+                divisors_back.append(n//i)
+
+    divisors.remove(1) # 문제의 조건 : M은 1보다 크다. 그러므로 divisors에서 1을 제거
+
+    return divisors + divisors_back[::-1]
+
+num = []
+
+for _ in range(int(stdin.readline())):
+    num.append(int(stdin.readline()))
+
+result = []
+
+for i in range(0, len(num)):
+    result.append(abs(num[i]-num[i-1]))
+
+gcd = result[0]
+
+for i in result[1:]:
+    gcd = greatest_common(gcd, i)
+
+print(*get_divisor(gcd))
