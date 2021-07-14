@@ -1,0 +1,12 @@
+from sys import stdin
+
+num = int(stdin.readline())-1
+num1 = 1
+num2 = 2
+
+for _ in range(num):
+    num3 = num1
+    num1 = num2
+    num2 = (num3 + num1)%15746
+
+print(num1)
