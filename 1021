@@ -1,0 +1,24 @@
+from collections import deque
+import sys
+
+ans = 0
+n, m = map(int, sys.stdin.readline().split())
+array = list(map(int, sys.stdin.readline().split()))
+deq = deque(range(1, n+1))
+
+for i in range(m):
+    if array[i] == deq[0]:
+        deq.popleft()
+        continue
+    
+    deq_index = deq.index(array[i])
+
+    if deq_index <= len(deq)//2:
+        deq.rotate(-deq_index)
+        ans += deq_index
+    else:
+        deq.rotate(len(deq) - deq_index)
+        ans += (len(deq)-deq_index)
+    deq.popleft()
+
+print(ans)
