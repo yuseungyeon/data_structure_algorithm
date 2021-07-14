@@ -1,0 +1,7 @@
+from sys import stdin
+from math import factorial
+
+for _ in range(int(stdin.readline())):
+    n, m = map(int, stdin.readline().split())
+    result = factorial(m)//(factorial(n)*factorial(m-n))
+    print(result)
