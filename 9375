@@ -1,0 +1,17 @@
+from sys import stdin
+from collections import Counter
+
+for _ in range(int(stdin.readline())):
+    clothes = []
+
+    for _ in range(int(stdin.readline())):
+        clo, thes = map(str, stdin.readline().split())
+        clothes.append(thes)
+
+    dic = Counter(clothes)
+    ans = 1
+
+    for key, value in dic.items():
+        ans *= (value+1)
+
+    print(ans-1)
