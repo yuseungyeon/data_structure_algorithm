@@ -1,0 +1,28 @@
+import sys
+
+while True:
+    first = []
+    ans = True
+    input_command = sys.stdin.readline().rstrip()
+    if len(input_command)==1 and input_command[0]=='.':
+        break
+    for i in input_command:
+        if i == '(' or i == '[':
+            first.append(i)
+        elif i == ')':
+            if first and first[-1] == '(':
+                first.pop()
+            else:
+                ans = False
+                break
+        elif i == ']':
+            if first and first[-1] == '[':
+                first.pop()
+            else:
+                ans = False
+                break
+
+    if len(first) == 0 and ans == True:
+        print("yes")
+    else:
+        print("no")
