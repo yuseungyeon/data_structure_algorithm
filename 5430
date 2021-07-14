@@ -1,0 +1,36 @@
+from sys import stdin
+from collections import deque
+
+for _ in range(int(stdin.readline())):
+    string = stdin.readline().replace("RR", "")
+    n = int(stdin.readline())
+    array = stdin.readline()[1:-2].split(",")
+
+    if array[0] != "":
+        array = deque(array)
+    else:
+        array = deque()
+
+    direction = True
+    length = True
+
+    for i in string:
+        if i == "R":
+            if direction == True:
+                direction = False
+            else:
+                direction = True
+        elif i == "D":
+            if len(array) == 0:
+                print("error")
+                length = False
+                break
+            if direction == True:
+                array.popleft()
+            else:
+                array.pop()
+
+    if length == True:
+        if direction==False:
+            array.reverse()
+        print('['+','.join(map(str, array))+']')
