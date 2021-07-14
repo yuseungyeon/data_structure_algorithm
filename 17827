@@ -1,0 +1,15 @@
+n, m, v = map(int, input().split())
+v-=1
+first = list(map(int, input().split()))
+result = []
+
+for i in range(m):
+    q = int(input())
+    if q<v:
+        result.append(first[q])
+    else:
+        q=(q-v)%(len(first)-v)
+        result.append(first[q+v])
+
+for k in result:
+    print(k)
