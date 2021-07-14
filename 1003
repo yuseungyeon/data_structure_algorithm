@@ -1,0 +1,15 @@
+from sys import stdin
+
+for _ in range(int(stdin.readline())):
+    num = int(stdin.readline())
+
+    zero = [1,0]
+    one = [0,1]
+
+    if num == 0 or num == 1:
+        print(zero[num], one[num])
+    else:
+        for _ in range(num-1):
+            zero.append(zero[-1]+zero[-2])
+            one.append(one[-1]+one[-2])
+        print(zero[-1], one[-1])
