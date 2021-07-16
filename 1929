@@ -1,0 +1,20 @@
+from sys import stdin
+
+def isPrimes(m, n):
+    array = [True for i in range(n)]
+
+    for i in range(2, int((n) ** 0.5 + 1)):
+        if array[i] == True:
+            for j in range(i+i, n, i):
+                array[j] = False
+
+    return [i for i in range(m, n) if array[i] == True]
+
+
+m, n = map(int, stdin.readline().split())
+array = isPrimes(m, n+1)
+
+if int(1) in array:
+    array.remove(1)
+
+print(*(array), sep='\n')
