@@ -1,0 +1,20 @@
+from sys import stdin
+
+def isPrimes(n):
+    array = [True for i in range(n+1)]
+
+    for i in range(2, int(n ** 0.5 + 1)):
+        if array[i] == True:
+            for j in range(i+i, n, i):
+                array[j] = False
+
+    return [i for i in range(2, n) if array[i] == True]
+
+for _ in range(int(stdin.readline())):
+    num = int(stdin.readline())
+    array = isPrimes(num)
+    half = num//2
+    for i in range(half, 1, -1):
+        if (i in array) and (num-i in array):
+            print("{} {}".format(i, num-i))
+            break
