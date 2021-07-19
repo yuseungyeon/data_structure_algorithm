@@ -1,4 +1,4 @@
-# 단순 
+# 단순 연결리스트
 
 class Node(object):
     def __init__(self, data, next = None):
