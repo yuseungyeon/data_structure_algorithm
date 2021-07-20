@@ -1,0 +1,35 @@
+### Q1
+
+from sys import stdin
+
+num = int(stdin.readline())
+array = list(map(int, stdin.readline().split()))
+array.sort(reverse=True)
+
+result = 0
+count = 0
+
+for i in array:
+    if count == 0 :
+        count = i
+    count -=1
+    if count == 0:
+        result += 1
+        
+print(result)
+
+### Q2
+
+from sys import stdin
+
+num = stdin.readline().replace('\n', '')
+num = num[::-1]
+result = int(num[0])
+
+for i in num[1:]:
+    if int(i) == 1 or int(i) == 0:
+        result += int(i)
+    else:
+        result *= int(i)
+
+print(result)
