@@ -1,0 +1,33 @@
+import sys
+
+def DFTravel(dic, charc):
+    print(charc, end = '')
+    if dic[charc][0] != '.':
+        DFTravel(dic, dic[charc][0])
+    if dic[charc][1] != '.':
+        DFTravel(dic, dic[charc][1])
+
+def LFTravel(dic, charc):
+    if dic[charc][0] != '.':
+        LFTravel(dic, dic[charc][0])
+    print(charc, end = '')
+    if dic[charc][1] != '.':
+        LFTravel(dic, dic[charc][1])
+
+def LRTravel(dic, charc):
+    if dic[charc][0] != '.':
+        LRTravel(dic, dic[charc][0])
+    if dic[charc][1] != '.':
+        LRTravel(dic, dic[charc][1])
+    print(charc, end = '')
+
+dic = {}
+for _ in range(int(sys.stdin.readline())):
+    a, b, c = map(str, sys.stdin.readline().split())
+    dic[a] = [b, c]
+
+DFTravel(dic, 'A')
+print('')
+LFTravel(dic, 'A')
+print('')
+LRTravel(dic, 'A')
