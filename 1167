@@ -1,0 +1,30 @@
+import sys
+from sys import stdin
+from collections import deque
+
+def bfs(start, n, tree):
+    q = deque([start])
+    visit = [-1] * (n+1)
+    visit[start]= 0
+    ret = [0,0]
+    while q:
+        cur = q.popleft()
+        for adj, adj_w in tree[cur]:
+            if visit[adj] == -1:
+                visit[adj] = visit[cur] + adj_w
+                q.append(adj)
+            if ret[0] < visit[adj]:
+                ret = [visit[adj], adj]
+    return ret
+    
+n = int(stdin.readline())
+tree = [[] for _ in range(n+1)]
+
+for _ in range(n):
+    lis = list(map(int, stdin.readline().split()))
+    for i in range(1, len(lis)-2, 2):
+        tree[lis[0]].append((lis[i], lis[i+1]))
+
+dis, node = bfs(1, n, tree)
+dis, node = bfs(node, n, tree)
+print(dis)
