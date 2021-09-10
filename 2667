@@ -1,0 +1,31 @@
+import sys
+
+n = int(sys.stdin.readline())
+graph = [list(map(int, sys.stdin.readline().replace('\n',''))) for _ in range(n)]
+
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+
+def dfs(x, y):
+    global cnt
+    if graph[x][y] == 1:
+        graph[x][y] = 0
+        cnt += 1
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if  nx<= -1 or nx>=n or ny<=-1 or ny>=n:
+                continue
+            dfs(nx, ny)
+
+result = []
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] == 1:
+            cnt = 0
+            dfs(i, j)
+            result.append(cnt)
+
+print(len(result))
+result.sort()
+print(*result, sep = '\n')
