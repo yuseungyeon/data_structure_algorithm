@@ -1,0 +1,30 @@
+import sys
+from collections import deque
+
+def bfs(n, m, k, h):
+    q = deque()
+    q.append([n, m])
+    dx = [2, 2, 1, 1, -1, -1, -2, -2]
+    dy = [1, -1, 2, -2, 2, -2, 1, -1]
+    mat[n][m] = 1
+    while q:
+        sx, sy = q.popleft()
+        if sx == k and sy == h:
+            return mat[sx][sy]-1
+        for j in range(8):
+            a = dx[j] + sx
+            b = dy[j] + sy
+            if a < 0 or a >= i or b < 0 or b >= i:
+                continue
+            if mat[a][b] == 0:
+                q.append([a, b])
+                mat[a][b] = mat[sx][sy] + 1
+            
+
+for _ in range(int(sys.stdin.readline())):
+    i = int(sys.stdin.readline())
+    mat = [[0]*i for _ in range(i)]
+    n, m = map(int, sys.stdin.readline().split())
+    k, h = map(int, sys.stdin.readline().split())
+    ans = bfs(n, m, k, h)
+    print(ans)
