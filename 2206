@@ -1,0 +1,33 @@
+import sys
+from collections import deque
+
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+
+def bfs():
+    q = deque()
+    q.append((0, 0, 1))
+    visited = [[[0]*2 for _ in range(m)] for _ in range(n)]
+    visited[0][0][1] = 1
+    while q:
+        a, b, w = q.popleft()
+        if a== n-1 and b == m-1:
+            print(visited)
+            return visited[a][b][w]
+        for i in range(4):
+            nx = a+dx[i]
+            ny = b+dy[i]
+            if 0 <= nx < n and 0 <= ny < m:
+                if maze[nx][ny] == 1 and w == 1:
+                    visited[nx][ny][0] = visited[a][b][1] + 1
+                    q.append((nx, ny, 0))
+                elif maze[nx][ny] == 0 and visited[nx][ny][w] == 0:
+                    visited[nx][ny][w] = visited[a][b][w] + 1
+                    q.append((nx, ny, w))
+    print(visited)
+    return -1
+
+n, m = map(int, sys.stdin.readline().split())
+maze = [list(map(int, sys.stdin.readline().replace('\n', ''))) for _ in range(n)]
+
+print(bfs())
