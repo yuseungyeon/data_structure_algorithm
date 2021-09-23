@@ -1,0 +1,37 @@
+import sys
+from collections import deque
+
+def bfs(i, group):
+    visited[i] = group
+    q = deque()
+    q.append(i)
+    while q:
+        a = q.popleft()
+        for j in graph[a]:
+            if visited[j] == 0:
+                visited[j] = -visited[a]
+                q.append(j)
+            else:
+                if visited[a] == visited[j]:
+                    return False
+    return True
+
+for _ in range(int(sys.stdin.readline())):
+    v, e = map(int, sys.stdin.readline().split())
+    graph = [[] for _ in range(v+1)]
+    for _ in range(e):
+        a, b = map(int, sys.stdin.readline().split())
+        graph[a].append(b)
+        graph[b].append(a)
+
+    visited = [0]*(v+1)
+
+    result = True
+    
+    for i in range(1, v+1):
+        if visited[i] == 0:
+            result = bfs(i, 1)
+            if not result:
+                break
+
+    print('YES' if result else 'NO')
