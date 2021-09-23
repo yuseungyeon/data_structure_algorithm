@@ -1,0 +1,33 @@
+import sys
+from collections import deque
+
+dx = [-1, 1, 0, 0, 1, 1, -1, -1]
+dy = [0, 0, -1, 1, 1, -1, 1, -1]
+
+def bfs(i, j):
+    map1[i][j] = 0
+    q = deque()
+    q.append((i, j))
+    while q:
+        cx, cy = q.popleft()
+        for move in range(8):
+            bx = cx + dx[move]
+            by = cy + dy[move]
+            if 0 <= bx < h and 0 <= by < w and map1[bx][by] == 1:
+                map1[bx][by] = 0
+                q.append((bx, by))
+
+while True:
+    w, h = map(int, sys.stdin.readline().split())
+    if w == 0 and w == 0:
+        break
+    island = 0
+    map1 = [list(map(int, sys.stdin.readline().split())) for _ in range(h)]
+    
+    for i in range(h):
+        for j in range(w):
+            if map1[i][j] == 1:
+                bfs(i, j)
+                island += 1
+
+    print(island)
