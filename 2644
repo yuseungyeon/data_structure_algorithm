@@ -1,0 +1,26 @@
+import sys
+from collections import deque
+
+def bfs():
+    q = deque()
+    q.append(x)
+    while q:
+        family = q.popleft()
+        for i in graph[family]:
+            if visited[i] == 0:
+                visited[i] = visited[family]+1
+                q.append(i)
+
+n = int(sys.stdin.readline())
+graph = [[] for _ in range(n+1)]
+
+x,y = map(int, sys.stdin.readline().split())
+for _ in range(int(sys.stdin.readline())):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+visited = [0]*(n+1)
+bfs()
+
+print(-1 if visited[y] == 0 else visited[y])
