@@ -1,0 +1,31 @@
+import sys
+from collections import deque
+
+dx = [0, 0, -1, 1, 1, -1, 1, -1]
+dy = [1, -1, 0, 0, 1, -1, -1, 1]
+
+def bfs():
+    while shark:
+        a, b = shark.popleft()
+        for k in range(8):
+            cx = a + dx[k]
+            cy = b + dy[k]
+            if 0 <= cx < n and 0 <= cy < m:
+                if sea[cx][cy] == 0:
+                    sea[cx][cy] = sea[a][b] + 1
+                    shark.append((cx, cy))
+    return max(map(max, sea))
+        
+
+n, m = map(int, sys.stdin.readline().split())
+sea = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+
+shark = deque()
+
+for i in range(n):
+    for j in range(m):
+        if sea[i][j] == 1:
+            shark.append((i, j))
+
+result = bfs()
+print(result-1)
