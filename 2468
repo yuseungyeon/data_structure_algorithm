@@ -1,0 +1,38 @@
+import sys
+from collections import deque
+
+def bfs(x, y, depth):
+    q = deque()
+    q.append((x, y))
+    visited[x][y] = 1
+    while q:
+        a, b = q.popleft()
+        for k in range(4):
+            cx = dx[k] + a
+            cy = dy[k] + b
+            if 0 <= cx < n and 0 <= cy < n:
+                if ground[cx][cy] > depth and visited[cx][cy] == 0:
+                    visited[cx][cy] = 1
+                    q.append((cx, cy))
+
+dx = [0, 0, -1 ,1]
+dy = [1, -1, 0, 0]
+
+n = int(sys.stdin.readline())
+ground = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+
+ground_max = max(map(max, ground))
+ans = 0
+
+for depth in range(ground_max):
+    visited = [[0]*n for _ in range(n)]
+    middle = 0
+    for i in range(n):
+        for j in range(n):
+            if ground[i][j] > depth and visited[i][j] == 0:
+                bfs(i, j, depth)
+                middle += 1
+    if middle > ans:
+        ans = middle
+
+print(ans)
