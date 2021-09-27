@@ -1,0 +1,44 @@
+import sys
+from collections import deque
+
+def bfs(x, y):
+    q = deque()
+    q.append((x, y))
+    visited[x][y] = 1
+    area = 1
+    while q:
+        a, b = q.popleft()
+        for k in range(4):
+            cx = dx[k] + a
+            cy = dy[k] + b
+            if 0 <= cx <m and 0 <= cy < n:
+                if visited[cx][cy] == 0 and square[cx][cy] == 0:
+                    visited[cx][cy] = 1
+                    q.append((cx, cy))
+                    area += 1
+    return area
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+m, n, k = map(int,sys.stdin.readline().split())
+square = [[0]*n for _ in range(m)]
+for _ in range(k):
+    a, b, c, d = map(int, sys.stdin.readline().split())
+    for i in range(b, d):
+        for j in range(a, c):
+            if square[i][j] == 0:
+                square[i][j] = 1
+
+ans = 0
+visited = [[0]*n for _ in range(m)]
+areas = []
+for i in range(m):
+    for j in range(n):
+        if square[i][j] == 0 and visited[i][j] == 0:
+            areas.append(bfs(i, j))
+            ans += 1
+
+areas.sort()
+print(ans)
+print(*areas, sep = ' ')
