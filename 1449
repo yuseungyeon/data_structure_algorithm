@@ -1,0 +1,19 @@
+import sys
+
+n, tape = map(int, sys.stdin.readline().split())
+hole = list(map(int, sys.stdin.readline().split()))
+hole.sort()
+
+start = hole[0]
+end = hole[0] + tape - 1
+ans = 1
+
+for i in range(1, len(hole)):
+    if start <= hole[i] <= end:
+        continue
+    else:
+        ans += 1
+        start = hole[i]
+        end = hole[i] + tape -1
+
+print(ans)
