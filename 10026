@@ -1,0 +1,58 @@
+import sys
+from collections import deque
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, 1, -1]
+
+def bfs(x, y):
+    q = deque()
+    q.append((x, y))
+    visited1[x][y] = 1
+    while q:
+        a, b = q.popleft()
+        for k in range(4):
+            cx = dx[k] + a
+            cy = dy[k] + b
+            if 0 <= cx < n and 0 <= cy < n:
+                if visited1[cx][cy] == 0 and color[cx][cy] == color[x][y]:
+                    visited1[cx][cy] = 1
+                    q.append((cx, cy))
+
+def blind_bfs(x, y):
+    q = deque()
+    q.append((x, y))
+    visited1[x][y] = 1
+    while q:
+        a, b = q.popleft()
+        for k in range(4):
+            cx = dx[k] + a
+            cy = dy[k] + b
+            if 0 <= cx < n and 0 <= cy < n:
+                if visited2[cx][cy] == 0 and color[cx][cy] == color[x][y]:
+                    visited2[cx][cy] = 1
+                    q.append((cx, cy))
+
+
+n = int(sys.stdin.readline())
+color = [list(map(str, sys.stdin.readline())) for _ in range(n)]
+
+ans1 = 0
+ans2 = 0
+visited1 = [[0]*n for _ in range(n)]
+visited2 = [[0]*n for _ in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        if visited1[i][j] == 0:
+            bfs(i, j)
+            ans1 += 1
+        if color[i][j] == 'G':
+            color[i][j] = 'R'
+
+for i in range(n):
+    for j in range(n):
+        if visited2[i][j] == 0:
+            blind_bfs(i, j)
+            ans2 += 1
+
+print(ans1, ans2)
