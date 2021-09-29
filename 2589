@@ -1,0 +1,33 @@
+import sys
+from collections import deque
+
+dx = [0, 0, -1, 1]
+dy = [1, -1, 0, 0]
+
+def bfs(x, y):
+    q = deque()
+    q.append((x, y))
+    visited[x][y] = 1
+    while q:
+        a, b = q.popleft()
+        for k in range(4):
+            cx = a + dx[k]
+            cy = b + dy[k]
+            if 0 <= cx < n and 0 <= cy < m:
+                if treasure[cx][cy] == 'L' and visited[cx][cy] == 0:
+                    visited[cx][cy] = visited[a][b] + 1
+                    q.append((cx, cy))
+    return max(map(max, visited))
+
+n, m = map(int, sys.stdin.readline().split())
+treasure = [list(map(str, sys.stdin.readline())) for _ in range(n)]
+ans = 0
+
+for i in range(n):
+    for j in range(m):
+        if treasure[i][j] != 'W':
+            visited = [[0]*m for _ in range(n)]
+            tmp = bfs(i, j)
+            ans = max(ans, tmp)
+
+print(ans-1)
