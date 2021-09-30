@@ -1,0 +1,16 @@
+import sys
+from itertools import permutations
+
+tri = []
+for _ in range(int(sys.stdin.readline())):
+    tri.append(int(sys.stdin.readline()))
+
+tri.sort(reverse = True)
+ans = -1
+
+for i in range(len(tri)-2):
+    if tri[i] < tri[i+1] + tri[i+2]:
+        ans = sum(tri[i:i+3])
+        break
+
+print(ans)
