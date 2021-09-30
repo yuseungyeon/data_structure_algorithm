@@ -1,0 +1,23 @@
+import sys
+
+n = int(sys.stdin.readline())
+a, b = map(int, sys.stdin.readline().split())
+a_cal = int(sys.stdin.readline())
+n_cal = []
+for _ in range(n):
+    n_cal.append(int(sys.stdin.readline()))
+
+n_cal.sort(reverse = True)
+pizza = a_cal
+price = a
+ans = 0
+
+for i in range(n+1):
+    tmp = pizza//price
+    if tmp < ans:
+        break
+    ans = tmp
+    pizza += n_cal.pop(0)
+    price += b
+
+print(ans)
