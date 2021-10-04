@@ -1,0 +1,15 @@
+from sys import stdin
+
+n = int(stdin.readline())
+
+a = list(map(int, stdin.readline().split()))
+b = list(map(int, stdin.readline().split()))
+
+a.sort()
+b.sort(reverse = True)
+
+ans = 0
+for i in range(len(a)):
+    ans += a[i]*b[i]
+
+print(ans)
